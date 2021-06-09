@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react'
 
-import {Container, Row, Carousel} from 'react-bootstrap'
+import {Container, Row, Carousel, Col} from 'react-bootstrap'
 
 import MyCarousel from '../../Conteudo/MyCarousel/MyCarousel'
 import Posts from '../../Conteudo/Posts/Posts'
@@ -8,6 +8,7 @@ import SubMenu from '../../Conteudo/SubMenu/SubMenu'
 
 import getPostsNoticias from '../../../utils/getPostsNoticias'
 import getNoticiasCarrossel from '../../../utils/getNoticiasCarrossel'
+import Filters from '../../Conteudo/Filters/Filters'
 
 const PaginaNoticias = () => {
     const [listaPostNoticias, setListaPostNoticias] = useState([])
@@ -57,8 +58,20 @@ const PaginaNoticias = () => {
             </Carousel>
             
             <Container>
+                <Row
+                    style={{
+                        'margin': '20px 0 0 0'
+                    }}
+                >
+                    <Col md="auto">
+                        <Filters/>
+                    </Col>        
+                </Row>
                 <Row xs={1} md={4} lg={3}
                     className="row"
+                    style={{
+                        'marginBottom': '0'
+                    }}
                 >
                     {postNoticiasMap()}
                 </Row>        

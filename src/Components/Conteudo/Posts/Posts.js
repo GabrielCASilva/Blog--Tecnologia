@@ -37,14 +37,13 @@ const CardPost = ({postagem, texto, atualizacao, imagem}) => {
 
 const Posts = ({titulo, corpoTexto, atualizacao, imagem}) => {
     return (
-        <>
-            
-                <CardPost
-                    imagem={imagem}
-                    postagem={titulo}
-                    texto={corpoTexto}
-                    atualizacao={atualizacao}
-                />
+        <>      
+            <CardPost
+                imagem={imagem}
+                postagem={titulo}
+                texto={corpoTexto}
+                atualizacao={atualizacao}
+            />
         </>
     )
 }

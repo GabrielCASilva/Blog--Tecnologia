@@ -1,11 +1,12 @@
 import React,{useState, useEffect} from 'react'
 
-import {Container, Row} from 'react-bootstrap'
+import {Container, Row, Col} from 'react-bootstrap'
 
 import SubMenu from '../../Conteudo/SubMenu/SubMenu'
 import Posts from '../../Conteudo/Posts/Posts'
 
 import getPostsAnalises from '../../../utils/getPostsAnalises'
+import Filters from '../../Conteudo/Filters/Filters'
 
 const PaginaAnalises = () => {
     const [listaPostAnalise, setListaPostAnalise] = useState([])
@@ -34,8 +35,20 @@ const PaginaAnalises = () => {
         <>
             <SubMenu/>
             <Container>
+                <Row
+                    style={{
+                        'margin': '20px 0 0 0'
+                    }}
+                >
+                    <Col md="auto">
+                        <Filters/>
+                    </Col>        
+                </Row>
                 <Row xs={1} md={4} lg={3}
                     className="row"
+                    style={{
+                        'marginBottom': '0'
+                    }}
                 >
                     {postAnaliseMap()}
                 </Row>

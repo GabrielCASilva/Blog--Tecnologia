@@ -21,6 +21,7 @@ import{
 } from '../../../utils/estilosTema'
 
 import getCategorias from '../../../utils/getCategorias'
+import PaginaLogin from '../PaginaLogin/PaginaLogin'
 
 const PaginaRotas = () => {
 
@@ -51,7 +52,7 @@ const PaginaRotas = () => {
         <TemaContext.Provider value={ tema }>
 
             <BrowserRouter>
-                <div style={{'backgroundColor': tema.corFundoTema}}>
+                <div style={{'backgroundColor': tema.corFundoTema, 'minHeight': '94.6vh'}}>
                     <Header funcaoConfiguraTema={ modificarTema } />
                     
                     <Switch>
@@ -83,10 +84,15 @@ const PaginaRotas = () => {
                             <PaginaPerfil/>
                         </Route>
 
+                        <Route path="/admin">
+                            <PaginaLogin/>
+                        </Route>
+
                     </Switch>
 
-                    <Footer/>
+                    
                 </div>
+                <Footer/>
             </BrowserRouter>
 
         </TemaContext.Provider>

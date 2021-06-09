@@ -3,16 +3,16 @@ const getCategorias = setState => {
     const _listaCategorias = [
         {
             'id' : 1,
-            'descricao' : 'Monstanha'
+            'descricao' : 'Jogos'
         },
         {
             'id' : 2,
-            'descricao' : 'Planície'
+            'descricao' : 'Celulares'
         },
         {
-            'id' : 3,
-            'descricao' : 'Ilha'
-        }
+            'id' : 2,
+            'descricao' : 'Consoles'
+        },
     ]
 
     setState(_listaCategorias)

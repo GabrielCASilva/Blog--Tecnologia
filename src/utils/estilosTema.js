@@ -7,6 +7,7 @@ const TEMA_CLARO_CONFIG = {
     objVariant: 'light',
     objFontVariant: 'dark',
     objbg: 'light',
+    objbgColor: 'white',
     fontColor: 'black',
     bg: '#F8F9FA',
 }
@@ -17,6 +18,7 @@ const TEMA_ESCURO_CONFIG = {
     objVariant: 'dark',
     objFontVariant: 'light',
     objbg: 'dark',
+    objbgColor: 'black',
     fontColor: 'white',
     bg: '#343A40'
 }
