@@ -12,6 +12,7 @@ import Filters from '../../Conteudo/Filters/Filters'
 const PaginaInicial = () => {
     const [listaPostInicio, setListaPostInicio] = useState([])
     const [listaCarrosselInicio, setListaCarrosselInicio] = useState([])
+    const [filtros, setFiltros] = useState([])
 
     useEffect(() => {
         getPostsInicio(setListaPostInicio)
@@ -20,7 +21,13 @@ const PaginaInicial = () => {
 
     const postInicioMap = () => {
         if(listaPostInicio.length > 0){
-            return listaPostInicio.map(item => {
+            let listaPost = listaPostInicio
+            if(filtros.length > 0 && filtros.indexOf(0) === -1){
+                listaPost = listaPost.filter(item => {
+                    return filtros.indexOf(item.idCategoria) > -1
+                })
+            }
+            return listaPost.map(item => {
                 return (
                     <Posts
                         key={item.id}
@@ -39,7 +46,9 @@ const PaginaInicial = () => {
         if(listaCarrosselInicio.length > 0){
             return listaCarrosselInicio.map(item => {
                 return (
-                    <Carousel.Item interval={3000}>
+                    <Carousel.Item interval={3000}
+                        key={item.id}
+                    >
                         <MyCarousel
                             imagem={item.imagem}
                             titulo={item.titulo}
@@ -51,12 +60,34 @@ const PaginaInicial = () => {
         }
     }
 
+    const adicionarFiltro = (idCategoria) => {
+        if(idCategoria === 0){
+            setFiltros([idCategoria])
+            return
+        }
+        let filtro = [...filtros]
+        
+        if(filtro.indexOf(0) === 0){
+            filtro.splice(0,1)
+        }
+
+        let indexFiltro = filtros.indexOf(idCategoria)
+        
+        if(indexFiltro === -1){
+            filtro.push(idCategoria)
+            setFiltros(filtro)
+        }else{
+                    
+            filtro.splice(indexFiltro, 1)
+            setFiltros(filtro)
+        }
+    }
+
     return (
         <>
             <Carousel>
                 {inicioCarrosselMap()}
             </Carousel>
-            
             <Container>
                 <Row
                     style={{
@@ -64,7 +95,10 @@ const PaginaInicial = () => {
                     }}
                 >
                     <Col md="auto">
-                        <Filters/>
+                        <Filters
+                            adicionarFiltro={adicionarFiltro}
+                            filtros={filtros}
+                        />
                     </Col>        
                 </Row>
                 <Row xs={1} md={4} lg={3}

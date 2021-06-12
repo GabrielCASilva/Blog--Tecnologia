@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Navbar, Nav, NavDropdown, Form, FormControl, Button, Image} from 'react-bootstrap'
 import {TEMA_ESCURO, TEMA_CLARO} from '../../../utils/estilosTema'
@@ -10,9 +10,6 @@ import TemaContext from '../../../contexts/TemaContext'
 const Header = ({funcaoConfiguraTema}) => {
 
     const tema = useContext(TemaContext)
-    const [mudarTema, setMudarTema] = useState(TEMA_CLARO)
-
-    funcaoConfiguraTema(mudarTema)
 
     return (
         <>
@@ -76,9 +73,9 @@ const Header = ({funcaoConfiguraTema}) => {
 
                         <Form.Check
                             className="btn-switch"
-                            onClick={() => mudarTema === TEMA_CLARO?
-                                        setMudarTema(TEMA_ESCURO):
-                                        setMudarTema(TEMA_CLARO)
+                            onClick={() => tema.nomeTema === TEMA_CLARO?
+                                        funcaoConfiguraTema(TEMA_ESCURO):
+                                        funcaoConfiguraTema(TEMA_CLARO)
                                     }
                             type="switch"
                             id="custom-switch"

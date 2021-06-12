@@ -5,7 +5,7 @@ import getCategorias from '../../../utils/getCategorias'
 
 import TemaContext from '../../../contexts/TemaContext'
 
-const Filters = () => {
+const Filters = ({adicionarFiltro, filtros}) => {
 
     const [btnCategorias, setBtnCategorias] = useState([])
     const tema = useContext(TemaContext)
@@ -18,9 +18,12 @@ const Filters = () => {
         if(btnCategorias.length > 0){
             return btnCategorias.map(item => {
                 return(
-                    <>
-                        <Button variant={tema.botaoVariant}>{item.descricao}</Button>
-                    </>
+                    <div key={item.id}>
+                        <Button 
+                            variant={filtros.indexOf(item.id) === -1? tema.botaoVariant : tema.botaoSelecionado}
+                            onClick={() => {adicionarFiltro(item.id)}}
+                        >{item.descricao}</Button>
+                    </div>
                 )
             })
         }
@@ -28,7 +31,9 @@ const Filters = () => {
 
     return (
         <ButtonGroup className="mb-2">
-            <Button variant={tema.botaoVariant}>Todos</Button>
+            <Button variant={filtros.indexOf(0) === -1? tema.botaoVariant : tema.botaoSelecionado}
+                onClick={() => {adicionarFiltro(0)}}
+            >Todos</Button>
             {btnCategoriasMap()}
         </ButtonGroup>
     )

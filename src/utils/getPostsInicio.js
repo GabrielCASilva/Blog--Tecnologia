@@ -2,6 +2,7 @@ const getPostsInicio = setState => {
     const _listaPostsInicio = [
         {
             'id': 1,
+            'idCategoria': 2,
             'imagem':
                 "https://st.depositphotos.com/1780879/3816/i/600/depositphotos_38166573-stock-photo-trees-with-sunbeams.jpg",
             'titulo': 
@@ -16,6 +17,7 @@ const getPostsInicio = setState => {
         },
         {
             'id': 2,
+            'idCategoria': 1,
             'imagem':
                 "https://st.depositphotos.com/1780879/3816/i/600/depositphotos_38166573-stock-photo-trees-with-sunbeams.jpg",
             'titulo': 
@@ -30,6 +32,7 @@ const getPostsInicio = setState => {
         },
         {
             'id': 3,
+            'idCategoria': 3,
             'imagem':
                 "https://st.depositphotos.com/1780879/3816/i/600/depositphotos_38166573-stock-photo-trees-with-sunbeams.jpg",
             'titulo': 
@@ -44,6 +47,7 @@ const getPostsInicio = setState => {
         },
         {
             'id': 4,
+            'idCategoria': 2,
             'imagem':
                 "https://st.depositphotos.com/1780879/3816/i/600/depositphotos_38166573-stock-photo-trees-with-sunbeams.jpg",
             'titulo': 
@@ -58,6 +62,7 @@ const getPostsInicio = setState => {
         },
         {
             'id': 5,
+            'idCategoria': 1,
             'imagem':
                 "https://st.depositphotos.com/1780879/3816/i/600/depositphotos_38166573-stock-photo-trees-with-sunbeams.jpg",
             'titulo': 

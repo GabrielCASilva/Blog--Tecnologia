@@ -22,6 +22,7 @@ import{
 
 import getCategorias from '../../../utils/getCategorias'
 import PaginaLogin from '../PaginaLogin/PaginaLogin'
+import PaginaPost from '../PaginaPost/PaginaPost'
 
 const PaginaRotas = () => {
 
@@ -53,7 +54,7 @@ const PaginaRotas = () => {
 
             <BrowserRouter>
                 <div style={{'backgroundColor': tema.corFundoTema, 'minHeight': '94.6vh'}}>
-                    <Header funcaoConfiguraTema={ modificarTema } />
+                    <Header funcaoConfiguraTema={ modificarTema }/>
                     
                     <Switch>
                         <Route exact path="/">
@@ -86,6 +87,10 @@ const PaginaRotas = () => {
 
                         <Route path="/admin">
                             <PaginaLogin/>
+                        </Route>
+
+                        <Route path="/pagina-post/:id">
+                            <PaginaPost/>
                         </Route>
 
                     </Switch>

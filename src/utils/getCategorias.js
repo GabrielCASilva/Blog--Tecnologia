@@ -10,12 +10,16 @@ const getCategorias = setState => {
             'descricao' : 'Celulares'
         },
         {
-            'id' : 2,
+            'id' : 3,
             'descricao' : 'Consoles'
         },
     ]
 
-    setState(_listaCategorias)
+    const _listaCategoriasOrdenada = _listaCategorias.sort((a,b) => {
+        return (a.descricao > b.descricao) ? 1 : -1
+    })
+
+    setState(_listaCategoriasOrdenada)
 }
 
 export default getCategorias

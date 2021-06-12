@@ -39,7 +39,10 @@ const PaginaNoticias = () => {
         if(listaCarrosselNoticias.length > 0){
             return listaCarrosselNoticias.map(item => {
                 return (
-                    <Carousel.Item interval={3000}>
+                    <Carousel.Item 
+                        interval={3000}
+                        key={item.id}
+                    >
                         <MyCarousel
                             imagem={item.imagem}
                             titulo={item.titulo}
@@ -64,7 +67,7 @@ const PaginaNoticias = () => {
                     }}
                 >
                     <Col md="auto">
-                        <Filters/>
+                        {/* <Filters/> */}
                     </Col>        
                 </Row>
                 <Row xs={1} md={4} lg={3}

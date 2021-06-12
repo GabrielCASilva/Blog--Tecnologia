@@ -19,7 +19,8 @@ const PaginaAnalises = () => {
         if(listaPostAnalise.length > 0){
             return listaPostAnalise.map(item =>{
                 return(
-                    <Posts 
+                    <Posts
+                        key={item.id}
                         id={item.id}
                         imagem={item.imagem}
                         titulo={item.titulo}
@@ -41,7 +42,7 @@ const PaginaAnalises = () => {
                     }}
                 >
                     <Col md="auto">
-                        <Filters/>
+                        {/* <Filters/> */}
                     </Col>        
                 </Row>
                 <Row xs={1} md={4} lg={3}

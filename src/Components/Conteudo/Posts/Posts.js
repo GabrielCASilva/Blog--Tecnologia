@@ -4,8 +4,10 @@ import './Posts.css'
 import {Col, Card, Button} from 'react-bootstrap'
 
 import TemaContext from '../../../contexts/TemaContext'
+import { Link } from 'react-router-dom'
 
-const CardPost = ({postagem, texto, atualizacao, imagem}) => {
+const CardPost = ({postagem, texto, atualizacao, imagem, PostId}) => {
+
     const tema = useContext(TemaContext)
 
     return (
@@ -22,7 +24,10 @@ const CardPost = ({postagem, texto, atualizacao, imagem}) => {
                         <Card.Text>
                             {texto}
                         </Card.Text>
-                        <Button variant={tema.botaoVariant}>Leia Mais</Button>
+                                <Link to={`/pagina-post/${PostId}`}>
+                                    <Button variant={tema.botaoVariant}>Leia Mais</Button>
+                                </Link>
+                        
                     </Card.Body>
                     <Card.Footer>
                         <small className="text-muted">
@@ -35,7 +40,7 @@ const CardPost = ({postagem, texto, atualizacao, imagem}) => {
     )
 }
 
-const Posts = ({titulo, corpoTexto, atualizacao, imagem}) => {
+const Posts = ({titulo, corpoTexto, atualizacao, imagem, id}) => {
     return (
         <>      
             <CardPost
@@ -43,6 +48,7 @@ const Posts = ({titulo, corpoTexto, atualizacao, imagem}) => {
                 postagem={titulo}
                 texto={corpoTexto}
                 atualizacao={atualizacao}
+                PostId={id}
             />
         </>
     )
