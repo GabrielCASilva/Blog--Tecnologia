@@ -35,7 +35,7 @@ const PaginaInicial = () => {
                         imagem={item.imagem}
                         titulo={item.titulo}
                         corpoTexto={item.texto}
-                        atualizacao={item.atualizacao}
+                        atualizacao={item.dataCriacao}
                     />
                 )
             })

@@ -1,5 +1,5 @@
-const getPostsInicio = setState => {
-    const _listaPostsInicio = [
+{
+    "postanges" : [
         {
             "id": 1,
             "idCategoria": 1,
@@ -61,8 +61,4 @@ const getPostsInicio = setState => {
             "dataCriacao":"2021-06-13"
         }
     ]
-
-    setState(_listaPostsInicio)
 }
-
-export default getPostsInicio

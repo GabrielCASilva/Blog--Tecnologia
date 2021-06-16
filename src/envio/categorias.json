@@ -1,6 +1,5 @@
-const getCategorias = setState => {
-
-    const _listaCategorias = [
+{
+    "categorias":[
         {
             "id" : 1,
             "descricao" : "Jogos"
@@ -30,12 +29,4 @@ const getCategorias = setState => {
             "descricao" : "Hardware"
         }
     ]
-
-    const _listaCategoriasOrdenada = _listaCategorias.sort((a,b) => {
-        return (a.descricao > b.descricao) ? 1 : -1
-    })
-
-    setState(_listaCategoriasOrdenada)
 }
-
-export default getCategorias
