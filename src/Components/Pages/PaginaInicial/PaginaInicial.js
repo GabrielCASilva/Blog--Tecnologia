@@ -14,8 +14,9 @@ const PaginaInicial = () => {
     const [listaCarrosselInicio, setListaCarrosselInicio] = useState([])
     const [filtros, setFiltros] = useState([])
 
-    useEffect(() => {
-        getPostsInicio(setListaPostInicio)
+    useEffect(async() => {
+        const posts = await getPostsInicio()
+        setListaPostInicio(posts)
         getInicioCarrossel(setListaCarrosselInicio)
     },[])
 
@@ -34,8 +35,8 @@ const PaginaInicial = () => {
                         id={item.id}
                         imagem={item.imagem}
                         titulo={item.titulo}
-                        corpoTexto={item.texto}
-                        atualizacao={item.dataCriacao}
+                        corpoTexto={item.descricao}
+                        atualizacao={item.dataPostagem}
                     />
                 )
             })

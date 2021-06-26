@@ -15,8 +15,9 @@ const PaginaNoticias = () => {
     const [listaCarrosselNoticias, setListaCarrosselNoticias] = useState([])
     const [filtros, setFiltros] = useState([])
 
-    useEffect(() => {
-        getPostsInicio(setListaPostNoticias)
+    useEffect(async () => {
+        const post = await getPostsInicio()
+        setListaPostNoticias(post)
         getNoticiasCarrossel(setListaCarrosselNoticias)
     },[])
 
@@ -29,14 +30,14 @@ const PaginaNoticias = () => {
                 })
             }
             return listaPost.map(item => {
-                if(item.idTipoPostagem === 0){
+                if(item.idTipoPostagem === 1){
                     return(
                         <Posts 
                             id={item.id}
                             imagem={item.imagem}
                             titulo={item.titulo}
-                            corpoTexto={item.texto}
-                            atualizacao={item.dataCriacao}
+                            corpoTexto={item.descricao}
+                            atualizacao={item.dataPostagem}
                         />
                     )
                 }else{

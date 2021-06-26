@@ -10,6 +10,7 @@ import PaginaAnalises from '../PaginaAnalises/PaginaAnalises'
 import PaginaNoticias from '../PaginaNoticias/PaginaNoticias'
 import PaginaSobre from '../PaginaSobre/PaginaSobre'
 import PaginaPerfil from '../PaginaPerfil/PaginaPerfil'
+import PaginaNovoPost from '../PaginaNovoPost/PaginaNovoPost'
 
 import TemaContext from '../../../contexts/TemaContext'
 
@@ -29,8 +30,9 @@ const PaginaRotas = () => {
     const [tema, setTema] = useState(TEMA_CLARO_CONFIG)
     const [categorias, setCategorias] = useState([])
 
-    useEffect(() => {
-        getCategorias(setCategorias)
+    useEffect( async () => {
+        const categoria = await getCategorias()
+        setCategorias(categoria)
     },[])
 
     const modificarTema = temaSelecionado => {
@@ -47,7 +49,7 @@ const PaginaRotas = () => {
             default:
                 setTema(TEMA_CLARO_CONFIG)
         }
-    } 
+    }
 
     return (
         <TemaContext.Provider value={ tema }>
@@ -91,6 +93,12 @@ const PaginaRotas = () => {
 
                         <Route path="/pagina-post/:id">
                             <PaginaPost/>
+                        </Route>
+
+                        <Route path={`/novo-post/:criacao`}>
+                            <PaginaNovoPost
+                                categorias={categorias}
+                            />
                         </Route>
 
                     </Switch>

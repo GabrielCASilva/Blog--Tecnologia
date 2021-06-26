@@ -10,8 +10,9 @@ const Filters = ({adicionarFiltro, filtros}) => {
     const [btnCategorias, setBtnCategorias] = useState([])
     const tema = useContext(TemaContext)
 
-    useEffect(() => {
-        getCategorias(setBtnCategorias)
+    useEffect( async () => {
+        const categorias = await getCategorias()
+        setBtnCategorias(categorias)
     }, [])
 
     const btnCategoriasMap = () => {

@@ -1,68 +1,9 @@
-const getPostsInicio = setState => {
-    const _listaPostsInicio = [
-        {
-            "id": 1,
-            "idCategoria": 1,
-            "idTipoPostagem": 0,
-            "imagem":
-                "https://i.ytimg.com/vi/E3Huy2cdih0/maxresdefault.jpg",
-            "titulo": 
-                "Elden Ring ganha data de lançamento em 2022",
+import instanciaAxios from '../config/http'
 
-            "texto":
-                "Elden Ring ganha data de lançamento para 21 de janeiro de 2022. E foi mostrado um trailer de gameplaay no Summer Game Fest 2021, nesta quinta-feira (10). O aguardado game da Bandai Namco e da From Software...",
-
-            "ultimaAtualizacao":"2021-06-11",
-            "dataCriacao":"2021-06-11"
-        },
-        {
-            "id": 2,
-            "idCategoria": 2,
-            "idTipoPostagem": 0,
-            "imagem":
-                "https://s2.glbimg.com/cvlFGD9SFiw9kzRpcjdr4MKficI=/0x0:10001x5181/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/U/v/hD8JyFT3iAfUr59zWKUQ/redmi-note-10-pro-2.jpg",
-            "titulo": 
-                "Redmi Note 10 (Xiaomi) vende 2 milhões de unidades apenas na Índia",
-
-            "texto":
-                "O Redmi Note 10 (Xiaomi) alcançou a marca de 2 milhões de unidades vendidas na Índia desde o lançamento da linha, em março deste ano. A série, que é formada por Note 10, Note 10 Pro e Note 10 pro Max, além do...",
-
-            "ultimaAtualizacao":"2021-06-11",
-            "dataCriacao":"2021-06-11"
-        },
-        {
-            "id": 3,
-            "idCategoria": 1,
-            "idTipoPostagem": 1,
-            "imagem":
-                "https://img.olhardigital.com.br/wp-content/uploads/2021/05/Resident-Evil-Village.jpg",
-            "titulo": 
-                "Análise de Resident Evil Village",
-
-            "texto":
-                "Resident Evil Village é o mais novo capítulo da popular franquia de survival horror da Capcom. O game dá sequência a RE 7, lançado em 2017, e é repleto de sangue, susto e muita ação. Com lançamento nesta...",
-
-            "ultimaAtualizacao":"2021-05-07",
-            "dataCriacao":"2021-05-07"
-        },
-        {
-            "id": 4,
-            "idCategoria": 7,
-            "idTipoPostagem": 0,
-            "imagem":
-                "https://s2.glbimg.com/koGTO_oB6ykDxOzixg3j619Ab1o=/0x0:695x391/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/z/k/IKiNiBQGA2rMkZvk3Imw/geforce-rtx3080ti.jpg",
-            "titulo": 
-                "NVIDIA encerrará o suporte para placas de vídeo no Windows 7 e 8 em outubro",
-
-            "texto":
-                "Ao fim do ano passado, foi analisado que cerca de 100 milhões de computadores ainda executam o Windows 7. Esse grande volume de usuários permanece no software mais antigo, embora tenha...",
-
-            "ultimaAtualizacao":"2021-06-13",
-            "dataCriacao":"2021-06-13"
-        }
-    ]
-
-    setState(_listaPostsInicio)
+const getPostsInicio = async () => {
+    const _listaPostsInicio = (await instanciaAxios.get("post")).data
+    
+    return _listaPostsInicio
 }
 
 export default getPostsInicio

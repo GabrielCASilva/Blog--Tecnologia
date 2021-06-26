@@ -12,8 +12,9 @@ const PaginaAnalises = () => {
     const [listaPostAnalise, setListaPostAnalise] = useState([])
     const [filtros, setFiltros] = useState([])
 
-    useEffect(() => {
-        getPostsInicio(setListaPostAnalise)
+    useEffect(async () => {
+        const post = await getPostsInicio()
+        setListaPostAnalise(post)
     }, [])
 
     const postAnaliseMap = () => {
@@ -25,15 +26,15 @@ const PaginaAnalises = () => {
                 })
             }
             return listaPost.map(item =>{
-                if(item.idTipoPostagem === 1){
+                if(item.idTipoPostagem === 2){
                     return(
                         <Posts
                             key={item.id}
                             id={item.id}
                             imagem={item.imagem}
                             titulo={item.titulo}
-                            corpoTexto={item.texto}
-                            atualizacao={item.dataCriacao}
+                            corpoTexto={item.descricao}
+                            atualizacao={item.dataPostagem}
                         />
                     )
                 }else{

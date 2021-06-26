@@ -1,11 +1,12 @@
 import React,{useContext} from 'react'
 import {Button} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import TemaContext from '../../../contexts/TemaContext'
 
 import './SubMenu.css'
 
-const SubMenu = () => {
+const SubMenu = ({criacao}) => {
     const tema = useContext(TemaContext)
     return (
         <div 
@@ -14,7 +15,9 @@ const SubMenu = () => {
                 'backgroundColor': tema.bg
             }}
         >
-            <Button variant={tema.botaoVariant} >Novo tópico</Button>
+            <Link to={`/novo-post/${criacao}`}>
+                <Button variant={tema.botaoVariant} >Novo tópico</Button>
+            </Link>
         </div>
     )
 }
