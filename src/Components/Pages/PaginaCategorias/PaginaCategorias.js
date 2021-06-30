@@ -1,11 +1,24 @@
-import React,{useContext} from 'react'
+import React,{useContext, useState} from 'react'
 import {Button, Spinner} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import TemaContext from '../../../contexts/TemaContext'
 
-const PaginaCategorias = ({lista}) => {
+import removerCategoriaServico from '../../../utils/removerCategoriaServico'
+
+const PaginaCategorias = ({lista, getCategorias}) => {
 
     const tema = useContext(TemaContext)
+
+    const removerCategoria = async (id) => {
+        
+        const resultado = await removerCategoriaServico(id)
+
+        if(resultado.sucesso){
+            alert(resultado.mensagem)
+            getCategorias()
+        }
+    }
 
     return (
         <>
@@ -14,12 +27,17 @@ const PaginaCategorias = ({lista}) => {
                     'color':tema.fontColor
                 }}
             >Lista Categorias</h3>
-            <Button
-                variant="outline-success"
-            >Nova Categoria</Button>
+
+            <Link to={`/nova-categoria`}>
+                <Button
+                    variant="outline-success"
+                >Nova Categoria</Button>
+            </Link>
+            
             <ul>
                 { lista ? lista.map(item => {
                     return(
+                        <>
                         <li 
                             key={item.id}
                             style={{
@@ -27,17 +45,18 @@ const PaginaCategorias = ({lista}) => {
                             }}
                         >
                             {item.descricao}
-                            <Button 
+                            <Button
+                                onClick={() => removerCategoria(item.id)}
                                 style={{
                                     'marginLeft': '10px'
                                 }}
                                 variant="outline-danger"
                             >Remover</Button>
                         </li>
-                    )
-                    
-                } ) : <Spinner animation="border" />
-                }
+                        </>
+                    )                   
+                } 
+                ) : <Spinner animation="border" /> }
             </ul>
         </>
     )

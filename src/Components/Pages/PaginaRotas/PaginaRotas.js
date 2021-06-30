@@ -24,15 +24,20 @@ import{
 import getCategorias from '../../../utils/getCategorias'
 import PaginaLogin from '../PaginaLogin/PaginaLogin'
 import PaginaPost from '../PaginaPost/PaginaPost'
+import PaginaNovaCategoria from '../PaginaNovaCategoria/PaginaNovaCategoria'
 
 const PaginaRotas = () => {
 
     const [tema, setTema] = useState(TEMA_CLARO_CONFIG)
     const [categorias, setCategorias] = useState([])
 
-    useEffect( async () => {
+    const fetchCategorias = async () => {
         const categoria = await getCategorias()
         setCategorias(categoria)
+    }
+    
+    useEffect( () => {
+        fetchCategorias()
     },[])
 
     const modificarTema = temaSelecionado => {
@@ -76,7 +81,10 @@ const PaginaRotas = () => {
                         </Route>
                         
                         <Route path="/categorias">
-                            <PaginaCategorias lista={categorias}/>
+                            <PaginaCategorias 
+                                lista={categorias}
+                                getCategorias={fetchCategorias}
+                            />
                         </Route>
                         
                         <Route path="/sobre">
@@ -95,9 +103,15 @@ const PaginaRotas = () => {
                             <PaginaPost/>
                         </Route>
 
-                        <Route path={`/novo-post/:criacao`}>
+                        <Route path={`/novo-post`}>
                             <PaginaNovoPost
                                 categorias={categorias}
+                            />
+                        </Route>
+
+                        <Route path={`/nova-categoria`}>
+                            <PaginaNovaCategoria
+                                getCategorias={fetchCategorias}
                             />
                         </Route>
 

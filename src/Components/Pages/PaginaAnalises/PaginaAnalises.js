@@ -2,7 +2,6 @@ import React,{useState, useEffect} from 'react'
 
 import {Container, Row, Col} from 'react-bootstrap'
 
-import SubMenu from '../../Conteudo/SubMenu/SubMenu'
 import Posts from '../../Conteudo/Posts/Posts'
 
 import getPostsInicio from '../../../utils/getPostsInicio'
@@ -69,7 +68,6 @@ const PaginaAnalises = () => {
 
     return (
         <>
-            <SubMenu/>
             <Container>
                 <Row
                     style={{

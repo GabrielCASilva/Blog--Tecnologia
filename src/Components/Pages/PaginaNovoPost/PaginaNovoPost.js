@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-import { useParams } from 'react-router-dom'
-import { Form, Button, Col, Row } from 'react-bootstrap'
+import { Form, Button, Col } from 'react-bootstrap'
 import salvarNovoPost from '../../../utils/salvarNovoPost'
 
 import './PaginaNovoPost.css'
@@ -8,15 +7,13 @@ import './PaginaNovoPost.css'
 const PaginaNovoPost = ({categorias}) => {
 
     const [titulo, setTitulo] = useState('')
+    const [autor, setAutor] = useState('')
+    const [tipoPostagem, setTipoPostagem] = useState(0)
     const [categoria, setCategoria] = useState(-1)
     const [imagem, setImagem] = useState('')
     const [descricao, setDescricao] = useState('')
 
-    const {criacao} = useParams()
-
     const incluirNovoPost = (e) => {
-
-        //console.log('Form \'submitado\' ')
 
         e.preventDefault()
 
@@ -24,7 +21,9 @@ const PaginaNovoPost = ({categorias}) => {
             !imagem ||
             !titulo ||
             !descricao ||
-            !categoria
+            !categoria ||
+            !autor ||
+            !tipoPostagem
         ){
             alert('Por gentileza, preencha todos os campos.')
             return false
@@ -41,8 +40,10 @@ const PaginaNovoPost = ({categorias}) => {
         const novoPost = {
             'imagem': imagem,
             'titulo': titulo,
+            'autor': autor,
+            'idTipoPostagem': parseInt(tipoPostagem),
             'descricao': descricao,
-            'idCategoria': categoria,
+            'categoriaId': categoria,
             'dataPostagem': `${ano}-${mesFormatado}-${dia}`
         }
 
@@ -58,12 +59,41 @@ const PaginaNovoPost = ({categorias}) => {
                 </Form.Group>
 
                 <Form.Group as={Col}>
+                    <Form.Label
+                        htmlFor='np-campo-categoria'
+                    >Tipo da postagem</Form.Label>
+                    <Form.Control 
+                        as="select"
+                        defaultValue="Selecione um tipo de postagem"
+                        id='np-campo-tipo-postagem'
+                        name='np-campo-tipo-postagem'
+                        value={tipoPostagem}
+                        onChange={e => setTipoPostagem(e.target.value)}
+                    >
+                        
+                        <option  value={0} disabled >Selecione tipo postagem</option>
+                        <option value={2}>Analises</option>
+                        <option value={1}>Noticias</option>
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group as={Col}>
                     <Form.Label htmlFor='np-campo-titulo'>Titulo</Form.Label>
                     <Form.Control
                         id='np-campo-titulo'
                         name='np-campo-titulo'
                         value={titulo}
                         onChange={e => setTitulo(e.target.value)}
+                    />
+                </Form.Group>
+
+                <Form.Group as={Col}>
+                    <Form.Label htmlFor='np-campo-autor'>Autor</Form.Label>
+                    <Form.Control
+                        id='np-campo-autor'
+                        name='np-campo-autor'
+                        value={autor}
+                        onChange={e => setAutor(e.target.value)}
                     />
                 </Form.Group>
 

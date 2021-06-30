@@ -6,8 +6,8 @@ import MyCarousel from '../../Conteudo/MyCarousel/MyCarousel'
 import Posts from '../../Conteudo/Posts/Posts'
 
 import getPostsInicio from '../../../utils/getPostsInicio'
-import getInicioCarrossel from '../../../utils/getInicioCarrossel'
 import Filters from '../../Conteudo/Filters/Filters'
+import SubMenu from '../../Conteudo/SubMenu/SubMenu'
 
 const PaginaInicial = () => {
     const [listaPostInicio, setListaPostInicio] = useState([])
@@ -17,7 +17,7 @@ const PaginaInicial = () => {
     useEffect(async() => {
         const posts = await getPostsInicio()
         setListaPostInicio(posts)
-        getInicioCarrossel(setListaCarrosselInicio)
+        setListaCarrosselInicio(posts.slice(0,3))
     },[])
 
     const postInicioMap = () => {
@@ -28,6 +28,7 @@ const PaginaInicial = () => {
                     return filtros.indexOf(item.idCategoria) > -1
                 })
             }
+            
             return listaPost.map(item => {
                 return (
                     <Posts
@@ -53,7 +54,7 @@ const PaginaInicial = () => {
                         <MyCarousel
                             imagem={item.imagem}
                             titulo={item.titulo}
-                            texto={item.texto}
+                            texto={item.descricao}
                         />
                     </Carousel.Item>
                 )
@@ -86,6 +87,7 @@ const PaginaInicial = () => {
 
     return (
         <>
+            <SubMenu/>
             <Carousel>
                 {inicioCarrosselMap()}
             </Carousel>

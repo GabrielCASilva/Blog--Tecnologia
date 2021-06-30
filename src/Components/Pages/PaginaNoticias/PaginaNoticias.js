@@ -4,10 +4,8 @@ import {Container, Row, Carousel, Col} from 'react-bootstrap'
 
 import MyCarousel from '../../Conteudo/MyCarousel/MyCarousel'
 import Posts from '../../Conteudo/Posts/Posts'
-import SubMenu from '../../Conteudo/SubMenu/SubMenu'
 
 import getPostsInicio from '../../../utils/getPostsInicio'
-import getNoticiasCarrossel from '../../../utils/getNoticiasCarrossel'
 import Filters from '../../Conteudo/Filters/Filters'
 
 const PaginaNoticias = () => {
@@ -18,7 +16,7 @@ const PaginaNoticias = () => {
     useEffect(async () => {
         const post = await getPostsInicio()
         setListaPostNoticias(post)
-        getNoticiasCarrossel(setListaCarrosselNoticias)
+        setListaCarrosselNoticias(post.slice(0,3))
     },[])
 
     const postNoticiasMap = () => {
@@ -58,7 +56,7 @@ const PaginaNoticias = () => {
                         <MyCarousel
                             imagem={item.imagem}
                             titulo={item.titulo}
-                            texto={item.texto}
+                            texto={item.descricao}
                         />
                     </Carousel.Item>
                 )
@@ -91,7 +89,6 @@ const PaginaNoticias = () => {
 
     return (
         <>
-            <SubMenu/>
             <Carousel>
                 {noticiasCarrosselMap()}
             </Carousel>

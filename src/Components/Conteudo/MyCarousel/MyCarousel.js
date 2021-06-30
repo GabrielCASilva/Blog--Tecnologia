@@ -2,7 +2,6 @@ import React from 'react'
 
 import {Carousel} from 'react-bootstrap'
 
-
 const MyCarousel = ({titulo, texto, imagem}) => {
     return(
         <>
@@ -14,7 +13,7 @@ const MyCarousel = ({titulo, texto, imagem}) => {
             />
             <Carousel.Caption>
                 <h3>{titulo}</h3>
-                <p>{texto}</p>
+                <p>{`${texto.slice(0,201)}...`}</p>
             </Carousel.Caption>
         </>
     )

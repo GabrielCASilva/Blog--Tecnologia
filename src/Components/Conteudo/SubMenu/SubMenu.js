@@ -6,7 +6,7 @@ import TemaContext from '../../../contexts/TemaContext'
 
 import './SubMenu.css'
 
-const SubMenu = ({criacao}) => {
+const SubMenu = () => {
     const tema = useContext(TemaContext)
     return (
         <div 
@@ -15,7 +15,7 @@ const SubMenu = ({criacao}) => {
                 'backgroundColor': tema.bg
             }}
         >
-            <Link to={`/novo-post/${criacao}`}>
+            <Link to={`/novo-post`}>
                 <Button variant={tema.botaoVariant} >Novo tópico</Button>
             </Link>
         </div>
