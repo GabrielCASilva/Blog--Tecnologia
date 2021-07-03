@@ -1,15 +1,23 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import './Posts.css'
 
 import {Col, Card, Button} from 'react-bootstrap'
 
 import TemaContext from '../../../contexts/TemaContext'
 import removerPostServico from '../../../utils/removerPostServico'
+import pegarCategoriaPeloId from '../../../utils/pegarCategoriaPeloId'
+import formatarData from '../../../utils/formatarData'
 import { Link } from 'react-router-dom'
 
-const CardPost = ({postagem, texto, atualizacao, imagem, PostId}) => {
+const CardPost = ({postagem, texto, atualizacao, imagem, idCategoria, PostId, idTipoPostagem}) => {
 
     const [postRemovido, setpostRemovido] = useState(false)
+    const [nomeCategoria, setNomeCategoria] = useState('')
+
+    useEffect(async ()=>{
+        const categoria = await pegarCategoriaPeloId(idCategoria)
+        setNomeCategoria(categoria.descricao)
+    },[])
 
     const tema = useContext(TemaContext)
 
@@ -49,7 +57,10 @@ const CardPost = ({postagem, texto, atualizacao, imagem, PostId}) => {
                         src={imagem}
                     />
                     <Card.Body>
-                        <Card.Title>{postagem}</Card.Title>
+                        <Card.Title>{idTipoPostagem === 1 ? "NOTÍCIA" : "ANÁLISE"}: {postagem}</Card.Title>
+                        <Card.Text>
+                            {nomeCategoria}
+                        </Card.Text>
                         <Card.Text>
                             {texto.slice(0,168)}...
                         </Card.Text>
@@ -62,7 +73,7 @@ const CardPost = ({postagem, texto, atualizacao, imagem, PostId}) => {
                     
                     <Card.Footer>
                         <small className="text-muted">
-                            {atualizacao}
+                            {atualizacao ? formatarData(atualizacao): null}
                         </small>
                     </Card.Footer>
                 </Card>
@@ -72,7 +83,7 @@ const CardPost = ({postagem, texto, atualizacao, imagem, PostId}) => {
     )
 }
 
-const Posts = ({titulo, corpoTexto, atualizacao, imagem, id}) => {
+const Posts = ({titulo, corpoTexto, atualizacao, imagem, id, idCategoria, idTipoPostagem}) => {
     return (
         <>      
             <CardPost
@@ -81,6 +92,8 @@ const Posts = ({titulo, corpoTexto, atualizacao, imagem, id}) => {
                 texto={corpoTexto}
                 atualizacao={atualizacao}
                 PostId={id}
+                idCategoria={idCategoria}
+                idTipoPostagem={idTipoPostagem}
             />
         </>
     )

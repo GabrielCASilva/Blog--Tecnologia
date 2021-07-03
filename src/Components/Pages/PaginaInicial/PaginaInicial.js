@@ -38,6 +38,8 @@ const PaginaInicial = () => {
                         titulo={item.titulo}
                         corpoTexto={item.descricao}
                         atualizacao={item.dataPostagem}
+                        idCategoria={item.idCategoria}
+                        idTipoPostagem={item.idTipoPostagem}
                     />
                 )
             })
