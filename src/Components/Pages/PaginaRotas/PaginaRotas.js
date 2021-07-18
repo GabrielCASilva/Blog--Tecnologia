@@ -86,10 +86,6 @@ const PaginaRotas = () => {
                                 getCategorias={fetchCategorias}
                             />
                         </Route>
-                        
-                        <Route path="/sobre">
-                            <PaginaSobre/>
-                        </Route>
 
                         <Route path="/perfil">
                             <PaginaPerfil/>

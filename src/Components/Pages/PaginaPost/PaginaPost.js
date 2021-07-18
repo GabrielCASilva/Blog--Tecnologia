@@ -18,7 +18,7 @@ const PaginaPost = () => {
         setPostCarregado( _postCarregado )
 
         const _categoria = await pegarCategoriaPeloId( _postCarregado.idCategoria )
-        setNomeCategoria(_categoria.descricao)
+        setNomeCategoria(_categoria ? _categoria.descricao : null)
     },[])
 
     if(postCarregado){

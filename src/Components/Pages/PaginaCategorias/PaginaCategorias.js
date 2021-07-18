@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext} from 'react'
 import {Button, Spinner} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -21,44 +21,59 @@ const PaginaCategorias = ({lista, getCategorias}) => {
     }
 
     return (
-        <>
-            <h3
-                style={{
-                    'color':tema.fontColor
-                }}
-            >Lista Categorias</h3>
+        <div style={{
+            margin: '15px',
+        }}
+        >
+            <div style={{
+                display:'flex',
+                justifyContent: 'space-between'
+            }}>
+                <h3
+                    style={{
+                        'color':tema.fontColor
+                    }}
+                >Lista Categorias</h3>
 
-            <Link to={`/nova-categoria`}>
-                <Button
-                    variant="outline-success"
-                >Nova Categoria</Button>
-            </Link>
+                <Link to={`/nova-categoria`}>
+                    <Button
+                        variant="outline-success"
+                    >Nova Categoria</Button>
+                </Link>
+            </div>
             
-            <ul>
-                { lista ? lista.map(item => {
-                    return(
-                        <>
-                        <li 
-                            key={item.id}
-                            style={{
-                                'color':tema.fontColor
-                            }}
-                        >
-                            {item.descricao}
-                            <Button
-                                onClick={() => removerCategoria(item.id)}
+            <nav style={{
+                margin: '15px',
+            }}>
+                <ul>
+                    { lista ? lista.map(item => {
+                        return(
+                            <>
+                            <li 
+                                key={item.id}
                                 style={{
-                                    'marginLeft': '10px'
+                                    'color':tema.fontColor,
+                                    margin: '20px 0',
+                                    listStyleType: 'none'
                                 }}
-                                variant="outline-danger"
-                            >Remover</Button>
-                        </li>
-                        </>
-                    )                   
-                } 
-                ) : <Spinner animation="border" /> }
-            </ul>
-        </>
+                            >
+                                
+                                <Button
+                                    onClick={() => removerCategoria(item.id)}
+                                    style={{
+                                        'marginRight': '10px'
+                                    }}
+                                    variant="outline-danger"
+                                >X</Button>
+                                {item.descricao}
+                            </li>
+                            </>
+                        )                   
+                    } 
+                    ) : <Spinner animation="border" /> }
+                </ul>
+            </nav>
+        </div>
     )
 }
 

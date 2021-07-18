@@ -16,7 +16,7 @@ const CardPost = ({postagem, texto, atualizacao, imagem, idCategoria, PostId, id
 
     useEffect(async ()=>{
         const categoria = await pegarCategoriaPeloId(idCategoria)
-        setNomeCategoria(categoria.descricao)
+        setNomeCategoria(categoria ? categoria.descricao : null)
     },[])
 
     const tema = useContext(TemaContext)

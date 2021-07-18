@@ -13,28 +13,6 @@ const Header = ({funcaoConfiguraTema}) => {
 
     return (
         <>
-            <div 
-                className="box-perfil-content"
-                style={{
-                    'backgroundColor' : tema.bg
-                }}
-            >
-                <Navbar collapseOnSelect  bg={tema.objbg} variant={tema.objVariant}>
-                    <LinkContainer to="/perfil">
-                        <Nav.Link>
-                                <Image
-                                    style={{
-                                        'width':'50px'
-                                    }}
-                                    src="http://www.rachegebran.com.br/wp-content/uploads/perfil.jpg" 
-                                    rounded
-                                />
-
-                        </Nav.Link>
-                    </LinkContainer>
-                </Navbar>
-            </div>
-
             <Navbar collapseOnSelect  bg={tema.objbg} variant={tema.objVariant} expand="lg" sticky="top">
 
                 <LinkContainer to='/'>
@@ -64,10 +42,6 @@ const Header = ({funcaoConfiguraTema}) => {
 
                         <LinkContainer to="./categorias">
                             <Nav.Link>Categorias</Nav.Link>
-                        </LinkContainer>
-                        
-                        <LinkContainer to="./sobre">
-                            <Nav.Link>Sobre</Nav.Link>
                         </LinkContainer>
                         
 

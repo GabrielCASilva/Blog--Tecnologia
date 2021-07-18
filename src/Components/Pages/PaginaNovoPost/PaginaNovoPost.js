@@ -1,10 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Form, Button, Col } from 'react-bootstrap'
 import salvarNovoPost from '../../../utils/salvarNovoPost'
+import temaContext from '../../../contexts/TemaContext'
 
 import './PaginaNovoPost.css'
 
 const PaginaNovoPost = ({categorias}) => {
+
+    const tema = useContext(temaContext)
 
     const [titulo, setTitulo] = useState('')
     const [autor, setAutor] = useState('')
@@ -53,98 +56,140 @@ const PaginaNovoPost = ({categorias}) => {
     return (
         <>
             
-            <Form onSubmit={ (e) => incluirNovoPost(e)}>
+            <Form 
+                onSubmit={ (e) => incluirNovoPost(e)}
+                style={{
+                    margin: '15px'
+                }}
+            >
                 <Form.Group as={Col}>
-                    <h2>Novo Post</h2>
+                    <h2
+                        style={{
+                            'color':tema.fontColor,
+                        }}>
+                    Novo Post</h2>
                 </Form.Group>
 
-                <Form.Group as={Col}>
-                    <Form.Label
-                        htmlFor='np-campo-categoria'
-                    >Tipo da postagem</Form.Label>
-                    <Form.Control 
-                        as="select"
-                        defaultValue="Selecione um tipo de postagem"
-                        id='np-campo-tipo-postagem'
-                        name='np-campo-tipo-postagem'
-                        value={tipoPostagem}
-                        onChange={e => setTipoPostagem(e.target.value)}
-                    >
-                        
-                        <option  value={0} disabled >Selecione tipo postagem</option>
-                        <option value={2}>Analises</option>
-                        <option value={1}>Noticias</option>
-                    </Form.Control>
-                </Form.Group>
+                <div
+                    style={{
+                        width: '30%',
+                        'color':tema.fontColor,
+                    }}
+                >
 
-                <Form.Group as={Col}>
-                    <Form.Label htmlFor='np-campo-titulo'>Titulo</Form.Label>
-                    <Form.Control
-                        id='np-campo-titulo'
-                        name='np-campo-titulo'
-                        value={titulo}
-                        onChange={e => setTitulo(e.target.value)}
-                    />
-                </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label
+                            htmlFor='np-campo-categoria'
+                        >Tipo da postagem</Form.Label>
+                        <Form.Control 
+                            style={{
+                                'color': tema.fontColor,
+                                'backgroundColor': tema.objbgColor
+                            }}
+                            as="select"
+                            defaultValue="Selecione um tipo de postagem"
+                            id='np-campo-tipo-postagem'
+                            name='np-campo-tipo-postagem'
+                            value={tipoPostagem}
+                            onChange={e => setTipoPostagem(e.target.value)}
+                        >
+                            
+                            <option  value={0} disabled >Selecione tipo postagem</option>
+                            <option value={2}>Analises</option>
+                            <option value={1}>Noticias</option>
+                        </Form.Control>
+                    </Form.Group>
 
-                <Form.Group as={Col}>
-                    <Form.Label htmlFor='np-campo-autor'>Autor</Form.Label>
-                    <Form.Control
-                        id='np-campo-autor'
-                        name='np-campo-autor'
-                        value={autor}
-                        onChange={e => setAutor(e.target.value)}
-                    />
-                </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label htmlFor='np-campo-titulo'>Titulo</Form.Label>
+                        <Form.Control
+                            style={{
+                                'color': tema.fontColor,
+                                'backgroundColor': tema.objbgColor
+                            }}
+                            id='np-campo-titulo'
+                            name='np-campo-titulo'
+                            value={titulo}
+                            onChange={e => setTitulo(e.target.value)}
+                        />
+                    </Form.Group>
 
-                <Form.Group as={Col}>
-                    <Form.Label
-                        htmlFor='np-campo-categoria'
-                    >Categoria</Form.Label>
-                    <Form.Control 
-                        as="select"
-                        defaultValue="Selecione uma categoria"
-                        id='np-campo-categoria'
-                        name='np-campo-categoria'
-                        value={categoria}
-                        onChange={e => setCategoria(e.target.value)}
-                    >
-                        
-                        <option  value={ -1} disabled >Selecione uma categoria</option>
+                    <Form.Group as={Col}>
+                        <Form.Label htmlFor='np-campo-autor'>Autor</Form.Label>
+                        <Form.Control
+                            style={{
+                                'color': tema.fontColor,
+                                'backgroundColor': tema.objbgColor
+                            }}
+                            id='np-campo-autor'
+                            name='np-campo-autor'
+                            value={autor}
+                            onChange={e => setAutor(e.target.value)}
+                        />
+                    </Form.Group>
 
-                        {categorias.map( item => {
-                            return (
-                            <option value={item.id} key={item.id}>
-                                {item.descricao}
-                            </option>
-                            )
-                        })}
-                    </Form.Control>
-                </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label
+                            htmlFor='np-campo-categoria'
+                        >Categoria</Form.Label>
+                        <Form.Control 
+                            style={{
+                                'color': tema.fontColor,
+                                'backgroundColor': tema.objbgColor
+                            }}
+                            as="select"
+                            defaultValue="Selecione uma categoria"
+                            id='np-campo-categoria'
+                            name='np-campo-categoria'
+                            value={categoria}
+                            onChange={e => setCategoria(e.target.value)}
+                        >
+                            
+                            <option  value={ -1} disabled >Selecione uma categoria</option>
 
-                <Form.Group as={Col}>
-                    <Form.Label htmlFor='np-campo-imagem'>Imagem</Form.Label>
-                    <Form.Control
-                        id='np-campo-imagem'
-                        name='np-campo-imagem'
-                        value={imagem}
-                        onChange={e => setImagem(e.target.value)}
-                    />
-                </Form.Group>
+                            {categorias.map( item => {
+                                return (
+                                <option value={item.id} key={item.id}>
+                                    {item.descricao}
+                                </option>
+                                )
+                            })}
+                        </Form.Control>
+                    </Form.Group>
 
-                <Form.Group as={Col}>
-                    <Form.Label htmlFor='np-campo-descricao'>Descricao</Form.Label>
-                    <Form.Control 
-                        as="textarea"
-                        id='np-campo-descricao'
-                        name='np-campo-descricao'
-                        value={descricao}
-                        onChange={e => setDescricao(e.target.value)}
-                    />
-                </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label htmlFor='np-campo-imagem'>Imagem</Form.Label>
+                        <Form.Control
+                            style={{
+                                'color': tema.fontColor,
+                                'backgroundColor': tema.objbgColor
+                            }}
+                            id='np-campo-imagem'
+                            name='np-campo-imagem'
+                            value={imagem}
+                            onChange={e => setImagem(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                        <Form.Label htmlFor='np-campo-descricao'>Descricao</Form.Label>
+                        <Form.Control 
+                            style={{
+                                'color': tema.fontColor,
+                                'backgroundColor': tema.objbgColor
+                            }}
+                            as="textarea"
+                            id='np-campo-descricao'
+                            name='np-campo-descricao'
+                            value={descricao}
+                            onChange={e => setDescricao(e.target.value)}
+                        />
+                    </Form.Group>
+                </div>
 
                 <Form.Group as={Col}>
                     <Button
+                        variant="outline-success"
                         type="submit" 
                         className="my-1"
                     >Salvar</Button>
